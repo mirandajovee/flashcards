@@ -6,9 +6,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="Flashcards" />
+<meta name="apple-mobile-web-app-title" content="Liquid Flash" />
 <meta name="theme-color" content="#eef1ee" />
-<title>Flashcards</title>
+<title>Liquid Flash</title>
 <style>
   :root {
     --rule: 2.4rem;                       /* note-card line spacing */
@@ -53,6 +53,18 @@
   @keyframes drift {
     0%,100% { transform: translate(0,0) scale(1); }
     50%     { transform: translate(3vmax, -4vmax) scale(1.08); }
+  }
+
+  .wordmark {
+    position: relative; z-index: 1;
+    font-size: 1.7rem; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+    background: linear-gradient(120deg, #7fa6a8, #9b8fc0 55%, #c98ea0);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.9;
   }
 
   header {
@@ -251,6 +263,9 @@
     <div class="count" id="count"></div>
   </header>
 
+  <!-- wordmark -->
+  <div class="wordmark" id="wordmark">Liquid&nbsp;Flash</div>
+
   <!-- empty / drop state -->
   <label class="drop" id="drop" for="fileInput">
     <div class="big">Drop a Markdown deck here</div>
@@ -339,6 +354,7 @@
   function showDeckUI(on){
     [stage, controls, header, hint].forEach(el => el.classList.toggle('hidden', !on));
     drop.classList.toggle('hidden', on);
+    document.getElementById('wordmark').classList.toggle('hidden', on);
   }
 
   // turn the back's #### (and other) headings into bullet points
